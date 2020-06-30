@@ -24,6 +24,10 @@ jobs:
           env: PYTHONOPTIMIZE=2
         - python-version: "3.6"
           env: PYTHONOPTIMIZE=1
+        - os: ubuntu-latest
+          python-version: "3.8"
+          name-suffix: " (with clang)"
+          env: CC=clang
         # Include new variables for Codecov
         - os: ubuntu-latest
           codecov-flag: GHA_Ubuntu
@@ -31,7 +35,7 @@ jobs:
           codecov-flag: GHA_macOS
 
     runs-on: ${{ matrix.os }}
-    name: ${{ matrix.os }} Python ${{ matrix.python-version }}
+    name: ${{ matrix.os }} Python ${{ matrix.python-version }}${{ matrix.name-suffix }}
 
     steps:
     - uses: actions/checkout@v2
